@@ -11,8 +11,8 @@ import theme from './styles/theme'
 import '@/app/styles/normalize.css'
 
 export const metadata: Metadata = {
-  title: 'whale-code-test',
-  description: 'Whale.io code test',
+  title: 'whale-the-force-be-with-you',
+  description: 'Whale.io Star Wars themed code test 🐳',
 }
 
 export default function RootLayout({

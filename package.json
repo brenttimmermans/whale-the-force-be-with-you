@@ -1,8 +1,8 @@
 {
-  "name": "whale-code-test",
+  "name": "whale-the-force-be-with-you",
   "version": "0.1.0",
   "private": true,
-  "description": "Whale.io code test",
+  "description": "Whale.io Star Wars themed code test 🐳",
   "author": "brenttimmermans <brenttimmermans7@gmail.com>",
   "scripts": {
     "dev": "next dev",

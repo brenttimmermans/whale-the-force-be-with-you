@@ -8,10 +8,10 @@ export default function Header() {
       <Link href="/">
         <Typography
           variant="h1"
-          sx={{ color: yellow[400], fontWeight: 700 }}
+          sx={{ color: yellow[400], fontWeight: 700, fontSize: '3.5rem' }}
           mb={2}
         >
-          whale-code-test
+          Whale The Force Be With You 🐳
         </Typography>
       </Link>
     </header>
