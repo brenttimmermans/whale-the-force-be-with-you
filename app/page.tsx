@@ -9,6 +9,9 @@ export default async function Home() {
 
   return (
     <main>
+      <div style={{ position: 'fixed', bottom: 0, right: 0 }}>
+        <Link href="/my-team">My Team</Link>
+      </div>
       <Grid container spacing={3}>
         {characters.map(character => (
           <Grid item sm key={character.id}>
