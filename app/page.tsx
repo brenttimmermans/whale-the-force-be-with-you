@@ -9,6 +9,7 @@ import {
 import { grey, yellow } from '@mui/material/colors'
 import Link from 'next/link'
 import { getAllCharacters } from './lib/data'
+import { ensureArray } from './lib/ensureArray'
 import styles from './page.module.css'
 import { Character } from './types'
 
@@ -25,7 +26,7 @@ export default async function Home() {
 }
 
 const CharacterCard = ({ character }: { character: Character }) => {
-  const homeworld = [].concat(character.homeworld ?? 'Unknown').join(' & ')
+  const homeworld = ensureArray(character.homeworld ?? 'Unknown').join(' & ')
   const gender = character.gender.toUpperCase()
 
   return (

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import Image from '../components/Image/Image'
 import config from '../config'
+import { ensureArray } from '../lib/ensureArray'
 import {
   addCharacterToMyTeam,
   removeCharacterFromMyTeam,
@@ -28,7 +29,7 @@ export default function DetailPage({ character, previous, next }: Props) {
     isAlreadyInTeamSelector(state, character.id),
   )
 
-  const masters = [].concat(character.masters ?? [])
+  const masters = ensureArray(character.masters ?? [])
 
   const nameIsEvil =
     character.name.includes('Darth') || character.name.includes('Sith')
@@ -116,7 +117,7 @@ export default function DetailPage({ character, previous, next }: Props) {
                 <strong>Affiliations:</strong>{' '}
                 {character.affiliations.join(', ')}
               </Typography>
-              {masters && (
+              {masters.length !== 0 && (
                 <Typography>
                   <strong>Masters:</strong> {masters.join(', ')}
                 </Typography>

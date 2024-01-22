@@ -9,16 +9,16 @@ interface Props extends NextImageProps {
 }
 
 export default function Image(props: Props) {
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    setError(null)
+    setError(false)
   }, [props.src])
 
   return (
     <NextImage
       {...props}
-      onError={setError}
+      onError={() => setError(true)}
       src={error ? fallbackImage : props.src}
     />
   )
