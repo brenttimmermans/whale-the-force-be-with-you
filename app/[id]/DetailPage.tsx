@@ -35,11 +35,13 @@ export default function DetailPage({ character, previous, next }: Props) {
       <h1>{character.name}</h1>
 
       {isAlreadyInTeam ? (
-        <Button onClick={handleRemoveFromMyTeamClick}>
+        <Button variant="contained" onClick={handleRemoveFromMyTeamClick}>
           Remove from my team
         </Button>
       ) : (
-        <Button onClick={handleAddToMyTeamClick}>Add to my team</Button>
+        <Button variant="contained" onClick={handleAddToMyTeamClick}>
+          Add to my team
+        </Button>
       )}
     </>
   )
