@@ -5,7 +5,7 @@ import { getAllCharacters } from './lib/data'
 import { Character } from './types'
 
 export default async function Home() {
-  const characters = await getAllCharacters()
+  const { data: characters } = await getAllCharacters()
 
   return (
     <main>
