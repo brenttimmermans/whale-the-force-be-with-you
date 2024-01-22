@@ -29,7 +29,7 @@ const CharacterCard = ({ character }: { character: Character }) => {
           alt={`Image of ${character.name}`}
           width={200}
           height={300}
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', objectPosition: 'top' }}
         />
         <div>{character.name}</div>
       </Card>
