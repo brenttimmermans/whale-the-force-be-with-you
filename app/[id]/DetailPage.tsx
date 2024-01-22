@@ -6,6 +6,7 @@ import { Box, Button, Card, Container, Stack, Typography } from '@mui/material'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
 import Image from '../components/Image/Image'
+import config from '../config'
 import {
   addCharacterToMyTeam,
   removeCharacterFromMyTeam,
@@ -20,6 +21,9 @@ interface Props {
 
 export default function DetailPage({ character, previous, next }: Props) {
   const dispatch = useDispatch()
+  const currentMyTeamCharacters = useSelector(
+    (state: RootState) => state.myTeam.characters,
+  )
   const isAlreadyInTeam = useSelector((state: RootState) =>
     isAlreadyInTeamSelector(state, character.id),
   )
@@ -34,6 +38,9 @@ export default function DetailPage({ character, previous, next }: Props) {
   )
   const masterAreEvil = masters.some(master => master.includes('Darth'))
   const cantAddToTeam = nameIsEvil || affiliationAreEvil || masterAreEvil
+
+  const hasMaxCharactersInTeam =
+    currentMyTeamCharacters.length === config.maxCharactersInTeam
 
   const handleAddToMyTeamClick = () => dispatch(addCharacterToMyTeam(character))
   const handleRemoveFromMyTeamClick = () =>
@@ -127,7 +134,7 @@ export default function DetailPage({ character, previous, next }: Props) {
               ) : (
                 <Button
                   variant="contained"
-                  disabled={cantAddToTeam}
+                  disabled={cantAddToTeam || hasMaxCharactersInTeam}
                   onClick={handleAddToMyTeamClick}
                 >
                   Add to my team
