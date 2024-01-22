@@ -1,13 +1,12 @@
 import Image from '@/app/components/Image/Image'
 import {
-  Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   CardMedia,
   Typography,
 } from '@mui/material'
+import { grey, yellow } from '@mui/material/colors'
 import Link from 'next/link'
 import { getAllCharacters } from './lib/data'
 import styles from './page.module.css'
@@ -26,11 +25,23 @@ export default async function Home() {
 }
 
 const CharacterCard = ({ character }: { character: Character }) => {
+  const homeworld = [].concat(character.homeworld ?? 'Unknown').join(' & ')
+  const gender = character.gender.toUpperCase()
+
   return (
     <div>
       <Link href={`/${character.id}`}>
-        <Card>
-          <CardHeader title={character.name} subheader={character.species} />
+        <Card
+          sx={{
+            color: 'white',
+            backgroundColor: 'hsla(0deg, 0%, 15%, 0.8)',
+          }}
+        >
+          <CardHeader
+            title={character.name}
+            subheader={character.species}
+            subheaderTypographyProps={{ color: yellow[200] }}
+          />
           <CardMedia title={character.name}>
             <Image
               src={character.image}
@@ -46,13 +57,10 @@ const CharacterCard = ({ character }: { character: Character }) => {
             />
           </CardMedia>
           <CardContent>
-            <Typography color="text.secondary">
-              {character.homeworld} · {character.gender}
+            <Typography color="text.secondary" sx={{ color: grey[300] }}>
+              {homeworld.toUpperCase()} · {gender}
             </Typography>
           </CardContent>
-          <CardActions>
-            <Button size="small">Learn more</Button>
-          </CardActions>
         </Card>
       </Link>
     </div>

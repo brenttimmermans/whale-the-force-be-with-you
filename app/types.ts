@@ -7,7 +7,7 @@ export interface Character {
   height: number
   mass: number
   gender: Gender
-  homeworld: string
+  homeworld?: string | string[]
   // wiki: 'http://starwars.wikia.com/wiki/Luke_Skywalker'
   image: string
   born: number

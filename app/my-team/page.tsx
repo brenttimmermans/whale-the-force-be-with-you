@@ -26,13 +26,21 @@ export default function MyTeam() {
   const handleRemoveFromMyTeamClick = (id: number) =>
     dispatch(removeCharacterFromMyTeam(id))
 
-  const missingCharacters = config.maxCharactersInTeam - myTeamCharacters.length
+  const currentNumberOfCharacters = myTeamCharacters.length
+  const missingCharacters =
+    config.maxCharactersInTeam - currentNumberOfCharacters
 
   return (
     <>
       <section className={styles.grid}>
         {myTeamCharacters.map(character => (
-          <Card key={character.id}>
+          <Card
+            key={character.id}
+            sx={{
+              color: 'white',
+              backgroundColor: 'hsla(0deg, 0%, 15%, 0.8)',
+            }}
+          >
             <CardHeader
               title={character.name}
               titleTypographyProps={{ noWrap: true }}
@@ -56,7 +64,7 @@ export default function MyTeam() {
                 }}
               />
             </CardMedia>
-            <CardActions>
+            <CardActions sx={{ justifyContent: 'center' }}>
               <Button
                 variant="contained"
                 color="error"
@@ -68,11 +76,19 @@ export default function MyTeam() {
           </Card>
         ))}
         {Array.from({ length: missingCharacters }).map((_, index) => (
-          <Card key={index}>
-            <CardHeader title="Missing character" />
+          <Card
+            key={index}
+            sx={{
+              color: 'white',
+              backgroundColor: 'hsla(0deg, 0%, 15%, 0.8)',
+            }}
+          >
+            <CardHeader
+              title={`Character #${currentNumberOfCharacters + index + 1}`}
+            />
             <CardContent>
               <Link href="/" passHref>
-                <Button>Add another character</Button>
+                <Button variant="contained">Add character</Button>
               </Link>
             </CardContent>
           </Card>
