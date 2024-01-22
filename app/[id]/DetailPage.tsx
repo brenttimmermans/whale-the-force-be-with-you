@@ -24,6 +24,17 @@ export default function DetailPage({ character, previous, next }: Props) {
     isAlreadyInTeamSelector(state, character.id),
   )
 
+  const masters = [].concat(character.masters ?? [])
+
+  const nameIsEvil =
+    character.name.includes('Darth') || character.name.includes('Sith')
+  const affiliationAreEvil = character.affiliations.some(
+    affiliation =>
+      affiliation.includes('Sith') || affiliation.includes('Darth'),
+  )
+  const masterAreEvil = masters.some(master => master.includes('Darth'))
+  const cantAddToTeam = nameIsEvil || affiliationAreEvil || masterAreEvil
+
   const handleAddToMyTeamClick = () => dispatch(addCharacterToMyTeam(character))
   const handleRemoveFromMyTeamClick = () =>
     dispatch(removeCharacterFromMyTeam(character.id))
@@ -94,6 +105,15 @@ export default function DetailPage({ character, previous, next }: Props) {
               <Typography>
                 <strong>Mass:</strong> {character.mass}kg
               </Typography>
+              <Typography>
+                <strong>Affiliations:</strong>{' '}
+                {character.affiliations.join(', ')}
+              </Typography>
+              {masters && (
+                <Typography>
+                  <strong>Masters:</strong> {masters.join(', ')}
+                </Typography>
+              )}
             </Box>
             <Box>
               {isAlreadyInTeam ? (
@@ -105,7 +125,11 @@ export default function DetailPage({ character, previous, next }: Props) {
                   Remove from my team
                 </Button>
               ) : (
-                <Button variant="contained" onClick={handleAddToMyTeamClick}>
+                <Button
+                  variant="contained"
+                  disabled={cantAddToTeam}
+                  onClick={handleAddToMyTeamClick}
+                >
                   Add to my team
                 </Button>
               )}

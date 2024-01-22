@@ -14,5 +14,5 @@ export interface Character {
   died: number
   species: Species
   affiliations: string[]
-  masters: string[]
+  masters: string | string[]
 }
