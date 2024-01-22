@@ -1,5 +1,6 @@
 import { Card, Grid } from '@mui/material'
 import Image from 'next/image'
+import Link from 'next/link'
 import { getAllCharacters } from './lib/data'
 import { Character } from './types'
 
@@ -21,15 +22,17 @@ export default async function Home() {
 
 const CharacterCard = ({ character }: { character: Character }) => {
   return (
-    <Card>
-      <Image
-        src={character.image}
-        alt={`Image of ${character.name}`}
-        width={200}
-        height={300}
-        style={{ objectFit: 'cover' }}
-      />
-      <div>{character.name}</div>
-    </Card>
+    <Link href={`/${character.id}`}>
+      <Card>
+        <Image
+          src={character.image}
+          alt={`Image of ${character.name}`}
+          width={200}
+          height={300}
+          style={{ objectFit: 'cover' }}
+        />
+        <div>{character.name}</div>
+      </Card>
+    </Link>
   )
 }
