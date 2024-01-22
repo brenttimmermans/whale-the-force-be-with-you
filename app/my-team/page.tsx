@@ -16,7 +16,7 @@ export default function MyTeam() {
     dispatch(removeCharacterFromMyTeam(id))
 
   return (
-    <main>
+    <>
       <h1>My Team</h1>
       {myTeamCharacters.map(character => (
         <div key={character.id}>
@@ -26,6 +26,6 @@ export default function MyTeam() {
           </Button>
         </div>
       ))}
-    </main>
+    </>
   )
 }

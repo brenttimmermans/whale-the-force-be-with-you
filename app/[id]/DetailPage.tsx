@@ -28,7 +28,7 @@ export default function DetailPage({ character, previous, next }: Props) {
     dispatch(removeCharacterFromMyTeam(character.id))
 
   return (
-    <main>
+    <>
       <Link href="/">Back home</Link>
       {previous && <Link href={`/${previous}`}>Previous</Link>}
       {next && <Link href={`/${next}`}>Next</Link>}
@@ -41,6 +41,6 @@ export default function DetailPage({ character, previous, next }: Props) {
       ) : (
         <Button onClick={handleAddToMyTeamClick}>Add to my team</Button>
       )}
-    </main>
+    </>
   )
 }

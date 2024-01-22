@@ -7,6 +7,7 @@ import MyTeamBar from './components/MyTeamBar/MyTeamBar'
 import './globals.css'
 
 import '@/app/styles/normalize.css'
+import { Container } from '@mui/material'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,8 +26,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <StoreProvider>
           <AppRouterCacheProvider>
-            <Header />
-            {children}
+            <Container>
+              <Header />
+              <main>{children}</main>
+            </Container>
             <MyTeamBar />
           </AppRouterCacheProvider>
         </StoreProvider>

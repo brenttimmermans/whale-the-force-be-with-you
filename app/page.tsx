@@ -8,7 +8,7 @@ export default async function Home() {
   const { data: characters } = await getAllCharacters()
 
   return (
-    <main>
+    <>
       <Grid container spacing={3}>
         {characters.map(character => (
           <Grid item sm key={character.id}>
@@ -16,7 +16,7 @@ export default async function Home() {
           </Grid>
         ))}
       </Grid>
-    </main>
+    </>
   )
 }
 
