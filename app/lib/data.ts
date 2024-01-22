@@ -20,10 +20,13 @@ export async function getAllCharacters(): Promise<CharactersResponse> {
   return { data }
 }
 
-  return res.json()
+interface CharacterResponse {
+  data: Character
+  previous: number | null
+  next: number | null
 }
 
-export async function getCharacter(id: number): Promise<Character> {
+export async function getCharacter(id: number): Promise<CharacterResponse> {
   const url = new URL(`id/${id}.json`, CHARACTER_API_URL).toString()
   const res = await fetch(url)
 
@@ -32,5 +35,17 @@ export async function getCharacter(id: number): Promise<Character> {
     throw new Error('Failed to fetch data')
   }
 
-  return res.json()
+  const previous: number | null = id === 1 ? null : id - 1
+
+  const nextResponse = await fetch(
+    new URL(`id/${id + 1}.json`, CHARACTER_API_URL).toString(),
+    {
+      method: 'HEAD',
+    },
+  )
+  const next = nextResponse.ok ? id + 1 : null
+
+  const data = await res.json()
+
+  return { data, previous, next }
 }
