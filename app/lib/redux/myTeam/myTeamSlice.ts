@@ -15,10 +15,10 @@ const myTeamSlick = createSlice({
   name: 'my-team',
   initialState,
   reducers: {
-    addCharacter: (state, action: PayloadAction<MyTeamCharacter>) => {
+    addCharacterToMyTeam: (state, action: PayloadAction<MyTeamCharacter>) => {
       state.characters.push(action.payload)
     },
-    removeCharacter: (state, action: PayloadAction<number>) => {
+    removeCharacterFromMyTeam: (state, action: PayloadAction<number>) => {
       state.characters = state.characters.filter(
         character => character.id !== action.payload,
       )
@@ -26,5 +26,6 @@ const myTeamSlick = createSlice({
   },
 })
 
-export const { addCharacter, removeCharacter } = myTeamSlick.actions
+export const { addCharacterToMyTeam, removeCharacterFromMyTeam } =
+  myTeamSlick.actions
 export default myTeamSlick.reducer
