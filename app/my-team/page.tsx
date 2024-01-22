@@ -1,6 +1,7 @@
 'use client'
 
 import Image from '@/app/components/Image/Image'
+import config from '@/app/config'
 import {
   Button,
   Card,
@@ -25,7 +26,7 @@ export default function MyTeam() {
   const handleRemoveFromMyTeamClick = (id: number) =>
     dispatch(removeCharacterFromMyTeam(id))
 
-  const missingCharacters = 5 - myTeamCharacters.length
+  const missingCharacters = config.maxCharactersInTeam - myTeamCharacters.length
 
   return (
     <>
