@@ -5,7 +5,11 @@ import { Character } from '@/app/types'
 import { Button } from '@mui/material'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCharacterToMyTeam } from '../lib/redux/myTeam/myTeamSlice'
+import {
+  addCharacterToMyTeam,
+  removeCharacterFromMyTeam,
+} from '../lib/redux/myTeam/myTeamSlice'
+import { isAlreadyInTeamSelector } from '../lib/redux/myTeam/selectors'
 
 interface Props {
   character: Character
@@ -15,9 +19,13 @@ interface Props {
 
 export default function DetailPage({ character, previous, next }: Props) {
   const dispatch = useDispatch()
-  const team = useSelector((state: RootState) => state.myTeam)
+  const isAlreadyInTeam = useSelector((state: RootState) =>
+    isAlreadyInTeamSelector(state, character.id),
+  )
 
   const handleAddToMyTeamClick = () => dispatch(addCharacterToMyTeam(character))
+  const handleRemoveFromMyTeamClick = () =>
+    dispatch(removeCharacterFromMyTeam(character.id))
 
   return (
     <main>
@@ -25,8 +33,14 @@ export default function DetailPage({ character, previous, next }: Props) {
       {previous && <Link href={`/${previous}`}>Previous</Link>}
       {next && <Link href={`/${next}`}>Next</Link>}
       <h1>{character.name}</h1>
-      <Button onClick={handleAddToMyTeamClick}>Add to my team</Button>
-      <div>{JSON.stringify(team)}</div>
+
+      {isAlreadyInTeam ? (
+        <Button onClick={handleRemoveFromMyTeamClick}>
+          Remove from my team
+        </Button>
+      ) : (
+        <Button onClick={handleAddToMyTeamClick}>Add to my team</Button>
+      )}
     </main>
   )
 }
