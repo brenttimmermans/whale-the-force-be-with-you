@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Image from '../components/Image/Image'
 import config from '../config'
 import { ensureArray } from '../lib/ensureArray'
+import { isEvil } from '../lib/isEvil'
 import {
   addCharacterToMyTeam,
   removeCharacterFromMyTeam,
@@ -37,19 +38,13 @@ export default function DetailPage({ character, previous, next }: Props) {
     isAlreadyInTeamSelector(state, character.id),
   )
 
-  const masters = ensureArray(character.masters ?? [])
+  const masters = ensureArray(character.masters)
 
-  const nameIsEvil =
-    character.name.includes('Darth') || character.name.includes('Sith')
-  const affiliationAreEvil = character.affiliations.some(
-    affiliation =>
-      affiliation.includes('Sith') || affiliation.includes('Darth'),
-  )
-  const masterAreEvil = masters.some(master => master.includes('Darth'))
-  const cantAddToTeam = nameIsEvil || affiliationAreEvil || masterAreEvil
-
+  const isEvilCharacter = isEvil(character)
   const hasMaxCharactersInTeam =
     currentMyTeamCharacters.length === config.maxCharactersInTeam
+
+  const cantAddToTeam = isEvilCharacter || hasMaxCharactersInTeam
 
   const handleAddToMyTeamClick = () => dispatch(addCharacterToMyTeam(character))
   const handleRemoveFromMyTeamClick = () =>
@@ -148,7 +143,7 @@ export default function DetailPage({ character, previous, next }: Props) {
                 ) : (
                   <Button
                     variant="contained"
-                    disabled={cantAddToTeam || hasMaxCharactersInTeam}
+                    disabled={cantAddToTeam}
                     onClick={handleAddToMyTeamClick}
                   >
                     Add to my team
