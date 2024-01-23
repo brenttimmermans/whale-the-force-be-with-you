@@ -40,7 +40,7 @@ const CharacterCard = ({ character }: { character: Character }) => {
         >
           <CardHeader
             title={character.name}
-            subheader={character.species}
+            subheader={character.species.toUpperCase()}
             subheaderTypographyProps={{ color: yellow[200] }}
           />
           <CardMedia title={character.name}>
