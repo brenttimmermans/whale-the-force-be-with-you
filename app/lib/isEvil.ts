@@ -11,7 +11,7 @@ export function isEvil(
       affiliation.includes('Sith') || affiliation.includes('Darth'),
   )
 
-  const masters = ensureArray(character.masters)
+  const masters = ensureArray(character.masters ?? [])
   const masterAreEvil = masters.some(master => master.includes('Darth'))
 
   return nameIsEvil || affiliationAreEvil || masterAreEvil
