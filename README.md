@@ -1,5 +1,7 @@
 # Whale The Force Be With You 🐳
 
+<img src="assets/screenshot.png" />
+
 ## Approach
 
 1. API-client + overview + detail
