@@ -1,4 +1,4 @@
-import { Character } from '../types'
+import { Character } from '@/app/types'
 import { isEvil } from './isEvil'
 
 describe(isEvil, () => {

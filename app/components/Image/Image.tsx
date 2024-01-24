@@ -1,8 +1,8 @@
 'use client'
 
+import fallbackImage from '@/public/images/star-wars-logo.jpeg'
 import NextImage, { ImageProps as NextImageProps } from 'next/image'
 import { useEffect, useState } from 'react'
-import fallbackImage from '../../../public/images/star-wars-logo.jpeg'
 
 interface Props extends NextImageProps {
   clickable?: boolean

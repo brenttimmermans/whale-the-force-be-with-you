@@ -1,5 +1,14 @@
 'use client'
 
+import Image from '@/app/components/Image/Image'
+import config from '@/app/config'
+import { ensureArray } from '@/app/lib/ensureArray'
+import { isEvil } from '@/app/lib/isEvil'
+import {
+  addCharacterToMyTeam,
+  removeCharacterFromMyTeam,
+} from '@/app/lib/redux/myTeam/myTeamSlice'
+import { isAlreadyInTeamSelector } from '@/app/lib/redux/myTeam/selectors'
 import { RootState } from '@/app/lib/redux/store'
 import { Character } from '@/app/types'
 import {
@@ -13,15 +22,6 @@ import {
 } from '@mui/material'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import Image from '../components/Image/Image'
-import config from '../config'
-import { ensureArray } from '../lib/ensureArray'
-import { isEvil } from '../lib/isEvil'
-import {
-  addCharacterToMyTeam,
-  removeCharacterFromMyTeam,
-} from '../lib/redux/myTeam/myTeamSlice'
-import { isAlreadyInTeamSelector } from '../lib/redux/myTeam/selectors'
 
 interface Props {
   character: Character
@@ -38,6 +38,13 @@ export default function DetailPage({ character, previous, next }: Props) {
     isAlreadyInTeamSelector(state, character.id),
   )
 
+  const handleAddToMyTeamClick = () => dispatch(addCharacterToMyTeam(character))
+  const handleRemoveFromMyTeamClick = () =>
+    dispatch(removeCharacterFromMyTeam(character.id))
+
+  const hasPreviousLink = Boolean(previous)
+  const hasNextLink = Boolean(next)
+
   const masters = ensureArray(character.masters)
 
   const isEvilCharacter = isEvil(character)
@@ -46,19 +53,12 @@ export default function DetailPage({ character, previous, next }: Props) {
 
   const cantAddToTeam = isEvilCharacter || hasMaxCharactersInTeam
 
-  const handleAddToMyTeamClick = () => dispatch(addCharacterToMyTeam(character))
-  const handleRemoveFromMyTeamClick = () =>
-    dispatch(removeCharacterFromMyTeam(character.id))
-
-  const hasPreviousLink = Boolean(previous)
-  const hasNextLink = Boolean(next)
-
   return (
     <Card
       sx={{
         padding: '20px 25px',
-        color: 'white',
-        backgroundColor: 'hsla(0deg, 0%, 15%, 0.8)',
+        color: 'var(--color-text-primary)',
+        backgroundColor: 'var(--color-background-card)',
       }}
     >
       <Grid container spacing={1} mb={2}>

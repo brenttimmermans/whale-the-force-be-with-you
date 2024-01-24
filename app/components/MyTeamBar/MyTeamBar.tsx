@@ -1,5 +1,6 @@
 'use client'
 
+import { RootState } from '@/app/lib/redux/store'
 import styled from '@emotion/styled'
 import {
   Avatar,
@@ -12,7 +13,6 @@ import {
 } from '@mui/material'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../lib/redux/store'
 
 export default function MyTeamBar() {
   const myTeamCharacters = useSelector(

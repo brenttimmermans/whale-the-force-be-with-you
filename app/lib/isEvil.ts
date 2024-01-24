@@ -1,5 +1,5 @@
-import { Character } from '../types'
-import { ensureArray } from './ensureArray'
+import { ensureArray } from '@/app/lib/ensureArray'
+import { Character } from '@/app/types'
 
 export function isEvil(
   character: Pick<Character, 'name' | 'affiliations' | 'masters'>,

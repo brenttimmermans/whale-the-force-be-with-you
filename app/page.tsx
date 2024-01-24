@@ -17,11 +17,11 @@ export default async function Home() {
   const { data: characters } = await getAllCharacters()
 
   return (
-    <section className={styles.grid}>
+    <article className={styles.grid}>
       {characters.map(character => (
         <CharacterCard key={character.id} character={character} />
       ))}
-    </section>
+    </article>
   )
 }
 
@@ -30,40 +30,38 @@ const CharacterCard = ({ character }: { character: Character }) => {
   const gender = character.gender.toUpperCase()
 
   return (
-    <div>
-      <Link href={`/${character.id}`}>
-        <Card
-          sx={{
-            color: 'white',
-            backgroundColor: 'hsla(0deg, 0%, 15%, 0.8)',
-          }}
-        >
-          <CardHeader
-            title={character.name}
-            subheader={character.species.toUpperCase()}
-            subheaderTypographyProps={{ color: yellow[200] }}
+    <Link href={`/${character.id}`} passHref>
+      <Card
+        sx={{
+          color: 'white',
+          backgroundColor: 'hsla(0deg, 0%, 15%, 0.8)',
+        }}
+      >
+        <CardHeader
+          title={character.name}
+          subheader={character.species.toUpperCase()}
+          subheaderTypographyProps={{ color: yellow[200] }}
+        />
+        <CardMedia title={character.name}>
+          <Image
+            src={character.image}
+            alt={character.name}
+            width={400}
+            height={600}
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'top',
+              width: '100%',
+              maxHeight: 300,
+            }}
           />
-          <CardMedia title={character.name}>
-            <Image
-              src={character.image}
-              alt={character.name}
-              width={400}
-              height={600}
-              style={{
-                objectFit: 'cover',
-                objectPosition: 'top',
-                width: '100%',
-                maxHeight: 300,
-              }}
-            />
-          </CardMedia>
-          <CardContent>
-            <Typography color="text.secondary" sx={{ color: grey[300] }}>
-              {homeworld.toUpperCase()} · {gender}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Link>
-    </div>
+        </CardMedia>
+        <CardContent>
+          <Typography color="text.secondary" sx={{ color: grey[300] }}>
+            {homeworld.toUpperCase()} · {gender}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
   )
 }
