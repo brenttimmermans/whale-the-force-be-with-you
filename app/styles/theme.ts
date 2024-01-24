@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { grey, yellow } from '@mui/material/colors'
-import { createTheme } from '@mui/material/styles'
+import { grey, yellow } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -14,6 +14,6 @@ const theme = createTheme({
   typography: {
     fontSize: 12,
   },
-})
+});
 
-export default theme
+export default theme;

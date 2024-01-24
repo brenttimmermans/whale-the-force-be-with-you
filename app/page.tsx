@@ -1,20 +1,20 @@
-import Image from '@/app/components/Image/Image'
+import Image from '@/app/components/Image/Image';
 import {
   Card,
   CardContent,
   CardHeader,
   CardMedia,
   Typography,
-} from '@mui/material'
-import { grey, yellow } from '@mui/material/colors'
-import Link from 'next/link'
-import { getAllCharacters } from './lib/data'
-import { ensureArray } from './lib/ensureArray'
-import styles from './page.module.css'
-import { Character } from './types'
+} from '@mui/material';
+import { grey, yellow } from '@mui/material/colors';
+import Link from 'next/link';
+import { getAllCharacters } from './lib/data';
+import { ensureArray } from './lib/ensureArray';
+import styles from './page.module.css';
+import { Character } from './types';
 
 export default async function Home() {
-  const { data: characters } = await getAllCharacters()
+  const { data: characters } = await getAllCharacters();
 
   return (
     <article className={styles.grid}>
@@ -22,12 +22,12 @@ export default async function Home() {
         <CharacterCard key={character.id} character={character} />
       ))}
     </article>
-  )
+  );
 }
 
 const CharacterCard = ({ character }: { character: Character }) => {
-  const homeworld = ensureArray(character.homeworld ?? 'Unknown').join(' & ')
-  const gender = character.gender.toUpperCase()
+  const homeworld = ensureArray(character.homeworld ?? 'Unknown').join(' & ');
+  const gender = character.gender.toUpperCase();
 
   return (
     <Link href={`/${character.id}`} passHref>
@@ -63,5 +63,5 @@ const CharacterCard = ({ character }: { character: Character }) => {
         </CardContent>
       </Card>
     </Link>
-  )
-}
+  );
+};

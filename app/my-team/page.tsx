@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import Image from '@/app/components/Image/Image'
-import config from '@/app/config'
-import { removeCharacterFromMyTeam } from '@/app/lib/redux/myTeam/myTeamSlice'
-import { RootState } from '@/app/lib/redux/store'
+import Image from '@/app/components/Image/Image';
+import config from '@/app/config';
+import { removeCharacterFromMyTeam } from '@/app/lib/redux/myTeam/myTeamSlice';
+import { RootState } from '@/app/lib/redux/store';
 import {
   Button,
   Card,
@@ -11,24 +11,24 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-} from '@mui/material'
-import Link from 'next/link'
-import { useDispatch, useSelector } from 'react-redux'
-import styles from './page.module.css'
+} from '@mui/material';
+import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './page.module.css';
 
 export default function MyTeam() {
   const myTeamCharacters = useSelector(
     (state: RootState) => state.myTeam.characters,
-  )
+  );
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleRemoveFromMyTeamClick = (id: number) =>
-    dispatch(removeCharacterFromMyTeam(id))
+    dispatch(removeCharacterFromMyTeam(id));
 
-  const currentNumberOfCharacters = myTeamCharacters.length
+  const currentNumberOfCharacters = myTeamCharacters.length;
   const missingCharacters =
-    config.maxCharactersInTeam - currentNumberOfCharacters
+    config.maxCharactersInTeam - currentNumberOfCharacters;
 
   return (
     <article className={styles.grid}>
@@ -81,7 +81,7 @@ export default function MyTeam() {
         />
       ))}
     </article>
-  )
+  );
 }
 
 const CharacterPlaceholder = ({ index }: { index: number }) => (
@@ -98,4 +98,4 @@ const CharacterPlaceholder = ({ index }: { index: number }) => (
       </Link>
     </CardContent>
   </Card>
-)
+);

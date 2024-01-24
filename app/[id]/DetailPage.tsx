@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import Image from '@/app/components/Image/Image'
-import config from '@/app/config'
-import { ensureArray } from '@/app/lib/ensureArray'
-import { isEvil } from '@/app/lib/isEvil'
+import Image from '@/app/components/Image/Image';
+import config from '@/app/config';
+import { ensureArray } from '@/app/lib/ensureArray';
+import { isEvil } from '@/app/lib/isEvil';
 import {
   addCharacterToMyTeam,
   removeCharacterFromMyTeam,
-} from '@/app/lib/redux/myTeam/myTeamSlice'
-import { isAlreadyInTeamSelector } from '@/app/lib/redux/myTeam/selectors'
-import { RootState } from '@/app/lib/redux/store'
-import { Character } from '@/app/types'
+} from '@/app/lib/redux/myTeam/myTeamSlice';
+import { isAlreadyInTeamSelector } from '@/app/lib/redux/myTeam/selectors';
+import { RootState } from '@/app/lib/redux/store';
+import { Character } from '@/app/types';
 import {
   Box,
   Button,
@@ -19,39 +19,40 @@ import {
   Grid,
   Stack,
   Typography,
-} from '@mui/material'
-import Link from 'next/link'
-import { useDispatch, useSelector } from 'react-redux'
+} from '@mui/material';
+import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface Props {
-  character: Character
-  previous: number | null
-  next: number | null
+  character: Character;
+  previous: number | null;
+  next: number | null;
 }
 
 export default function DetailPage({ character, previous, next }: Props) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const currentMyTeamCharacters = useSelector(
     (state: RootState) => state.myTeam.characters,
-  )
+  );
   const isAlreadyInTeam = useSelector((state: RootState) =>
     isAlreadyInTeamSelector(state, character.id),
-  )
+  );
 
-  const handleAddToMyTeamClick = () => dispatch(addCharacterToMyTeam(character))
+  const handleAddToMyTeamClick = () =>
+    dispatch(addCharacterToMyTeam(character));
   const handleRemoveFromMyTeamClick = () =>
-    dispatch(removeCharacterFromMyTeam(character.id))
+    dispatch(removeCharacterFromMyTeam(character.id));
 
-  const hasPreviousLink = Boolean(previous)
-  const hasNextLink = Boolean(next)
+  const hasPreviousLink = Boolean(previous);
+  const hasNextLink = Boolean(next);
 
-  const masters = ensureArray(character.masters)
+  const masters = ensureArray(character.masters);
 
-  const isEvilCharacter = isEvil(character)
+  const isEvilCharacter = isEvil(character);
   const hasMaxCharactersInTeam =
-    currentMyTeamCharacters.length === config.maxCharactersInTeam
+    currentMyTeamCharacters.length === config.maxCharactersInTeam;
 
-  const cantAddToTeam = isEvilCharacter || hasMaxCharactersInTeam
+  const cantAddToTeam = isEvilCharacter || hasMaxCharactersInTeam;
 
   return (
     <Card
@@ -155,5 +156,5 @@ export default function DetailPage({ character, previous, next }: Props) {
         </Grid>
       </Container>
     </Card>
-  )
+  );
 }

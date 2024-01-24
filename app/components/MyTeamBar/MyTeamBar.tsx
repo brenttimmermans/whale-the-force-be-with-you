@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { RootState } from '@/app/lib/redux/store'
-import styled from '@emotion/styled'
+import { RootState } from '@/app/lib/redux/store';
+import styled from '@emotion/styled';
 import {
   Avatar,
   AvatarGroup,
@@ -10,14 +10,14 @@ import {
   Grid,
   Stack,
   Typography,
-} from '@mui/material'
-import Link from 'next/link'
-import { useSelector } from 'react-redux'
+} from '@mui/material';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 export default function MyTeamBar() {
   const myTeamCharacters = useSelector(
     (state: RootState) => state.myTeam.characters,
-  )
+  );
 
   return (
     <BottomContainer>
@@ -64,7 +64,7 @@ export default function MyTeamBar() {
         </Grid>
       </Container>
     </BottomContainer>
-  )
+  );
 }
 
 const BottomContainer = styled.aside`
@@ -77,4 +77,4 @@ const BottomContainer = styled.aside`
   padding: 10px 20px;
 
   background-color: hsla(0deg, 0%, 15%, 0.8);
-`
+`;

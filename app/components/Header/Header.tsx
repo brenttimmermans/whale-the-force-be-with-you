@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material'
-import { yellow } from '@mui/material/colors'
-import Link from 'next/link'
+import { Typography } from '@mui/material';
+import { yellow } from '@mui/material/colors';
+import Link from 'next/link';
 
 export default function Header() {
   return (
@@ -15,5 +15,5 @@ export default function Header() {
         </Typography>
       </Link>
     </header>
-  )
+  );
 }

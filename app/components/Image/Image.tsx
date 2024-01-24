@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
-import fallbackImage from '@/public/images/star-wars-logo.jpeg'
-import NextImage, { ImageProps as NextImageProps } from 'next/image'
-import { useEffect, useState } from 'react'
+import fallbackImage from '@/public/images/star-wars-logo.jpeg';
+import NextImage, { ImageProps as NextImageProps } from 'next/image';
+import { useEffect, useState } from 'react';
 
 interface Props extends NextImageProps {
-  clickable?: boolean
+  clickable?: boolean;
 }
 
 export default function Image(props: Props) {
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    setError(false)
-  }, [props.src])
+    setError(false);
+  }, [props.src]);
 
   return (
     <NextImage
@@ -21,5 +21,5 @@ export default function Image(props: Props) {
       onError={() => setError(true)}
       src={error ? fallbackImage : props.src}
     />
-  )
+  );
 }

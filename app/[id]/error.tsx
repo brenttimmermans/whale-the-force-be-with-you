@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { Button, Container, Typography } from '@mui/material'
-import Link from 'next/link'
+import { Button, Container, Typography } from '@mui/material';
+import Link from 'next/link';
 
 export default function ErrorDetailPage() {
   return (
@@ -13,5 +13,5 @@ export default function ErrorDetailPage() {
         <Button>Go back home</Button>
       </Link>
     </Container>
-  )
+  );
 }
